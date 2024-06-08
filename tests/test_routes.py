@@ -1,8 +1,13 @@
+"""
+Модуль с самими тестами для трех случаев из fixt.py. Используется реальная база (не тестовая).
+Операции с базой только чтение. Имитация объекта Message телеграмма для функции handle_message.
+Бот также настоящий (не моковый)
+"""
 import json
 from unittest.mock import AsyncMock
 
 import pytest
-from aiogram import Bot, types
+from aiogram import Bot
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from motor.motor_asyncio import AsyncIOMotorClient

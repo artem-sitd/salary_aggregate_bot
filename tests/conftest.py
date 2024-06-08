@@ -1,3 +1,7 @@
+"""
+Данный модуль был для тестирования тестов :)) в части использования фикстур,
+но от этой затеи отказался, модуль будет удален позже
+"""
 # import pytest
 # from fastapi.testclient import TestClient
 # from motor.motor_asyncio import AsyncIOMotorClient

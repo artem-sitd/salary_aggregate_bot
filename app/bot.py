@@ -1,3 +1,7 @@
+"""
+Модуль для инициирования бота, создания подключения к Mongodb и коллекции в нем,
+регистрации комманд и handlers бота из других модулей
+"""
 import logging
 
 from aiogram import Bot, Dispatcher, Router
