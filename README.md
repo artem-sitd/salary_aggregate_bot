@@ -46,7 +46,9 @@
 
 <h3>Тесты:</h3>
 Использую  pytest, три тестовых случая (tests/test_routes.py). Для группировок по месяцу, дню и часу (test/fixt.py)
-![img.png](img.png)
+
+![index](https://github.com/artem-sitd/salary_aggregate_bot/assets/22573129/f549a598-fa6c-44bf-9557-1bc8b899e5b4)
+
 
 <h3>Вебхуки</h3>
 Для локальной разработки потребуется имитация публичного ip, в связи с тем, 
