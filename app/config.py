@@ -2,7 +2,7 @@ import os
 
 from dotenv import load_dotenv
 
-env_file = '.env.docker' if os.getenv('USE_DOCKER') else '.env'
+env_file = ".env.docker" if os.getenv("USE_DOCKER") else ".env"
 load_dotenv(env_file)
 
 load_dotenv()

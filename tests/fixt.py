@@ -2,17 +2,17 @@ tests_input_data = {
     "intput_t2": {
         "dt_from": "2022-09-01T00:00:00",
         "dt_upto": "2022-12-31T23:59:00",
-        "group_type": "month"
+        "group_type": "month",
     },
     "intput_t3": {
         "dt_from": "2022-10-01T00:00:00",
         "dt_upto": "2022-11-30T23:59:00",
-        "group_type": "day"
+        "group_type": "day",
     },
     "intput_t4": {
         "dt_from": "2022-02-01T00:00:00",
         "dt_upto": "2022-02-02T00:00:00",
-        "group_type": "hour"
+        "group_type": "hour",
     },
 }
 

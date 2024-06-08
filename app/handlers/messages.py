@@ -1,9 +1,10 @@
 import json
+import logging
 import sys
 from datetime import datetime, timedelta
+
 from aiogram import Router, types
 from aiogram.enums import ParseMode
-import logging
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -31,10 +32,7 @@ async def handle_message(message: types.Message, collection):
 
         dataset, labels = process_result(result, dt_from, dt_upto, group_type)
 
-        response = {
-            "dataset": dataset,
-            "labels": labels
-        }
+        response = {"dataset": dataset, "labels": labels}
 
         await message.answer(json.dumps(response), parse_mode=ParseMode.HTML)
     except Exception as e:
@@ -51,11 +49,11 @@ def generate_time_labels(dt_from, dt_upto, group_type):
 
     while current <= dt_upto:
         labels.append(current.isoformat())
-        if group_type == 'hour':
+        if group_type == "hour":
             current += timedelta(hours=1)
-        elif group_type == 'day':
+        elif group_type == "day":
             current += timedelta(days=1)
-        elif group_type == 'month':
+        elif group_type == "month":
             next_month = current.month % 12 + 1
             next_year = current.year + (current.month // 12)
             current = current.replace(month=next_month, year=next_year)
@@ -71,7 +69,7 @@ def process_result(result, dt_from, dt_upto, group_type):
      как ключ для сопоставления.
     """
     labels = generate_time_labels(dt_from, dt_upto, group_type)
-    result_dict = {item['date_label']: item['total'] for item in result}
+    result_dict = {item["date_label"]: item["total"] for item in result}
 
     dataset = [result_dict.get(label, 0) for label in labels]
 

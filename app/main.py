@@ -1,7 +1,7 @@
 import logging
 
-from fastapi import FastAPI, Request
 from aiogram.types import Update
+from fastapi import FastAPI, Request
 
 from app.bot import bot, dp
 from app.config import WEBHOOK_URL
