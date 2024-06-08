@@ -47,8 +47,7 @@
 <h3>Тесты:</h3>
 Использую  pytest, три тестовых случая (tests/test_routes.py). Для группировок по месяцу, дню и часу (test/fixt.py)
 
-![index](https://github.com/artem-sitd/salary_aggregate_bot/assets/22573129/f549a598-fa6c-44bf-9557-1bc8b899e5b4)
-
+<img height="150" src="https://github.com/artem-sitd/salary_aggregate_bot/assets/22573129/f549a598-fa6c-44bf-9557-1bc8b899e5b4">
 
 <h3>Вебхуки</h3>
 Для локальной разработки потребуется имитация публичного ip, в связи с тем, 
@@ -69,11 +68,15 @@
 1. Переходим сюда: https://dashboard.ngrok.com/get-started/setup/windows
 потребуется аутентификация (кто из РФ используйте VPN)
 2. Следующую страницу можно пропустить, далее заполнять не важно как
-![img.png](img.png)
+
+<img height="300" src="https://github.com/artem-sitd/salary_aggregate_bot/assets/22573129/ca0503db-4fe2-4e5c-b8a2-0e4066fda402">
+
 4. скачиваем ngrok и включаем, далее копируем конфиг (п. 4 на картинке), и вставляем в терминал ngrok,
 далее копируем (п 5 на картинке) и вставляем в терминал ngrok, предварительно исправив на порт 8000
 4. Ваш терминал ngrok должен показывать нечто похожее на это:
-![img_1.png](img_1.png)
+
+<img height="200" src="https://github.com/artem-sitd/salary_aggregate_bot/assets/22573129/27b5218e-2873-45b1-b041-803e746849c3">
+
 Выделенный фрагмент необходимо скопировать и вставить в ваш .env в переменную `WEBHOOK_URL=`. <b>ВНИМАНИЕ! В КОНЕЦ URL добавьте `"/"`</b>
 
 
