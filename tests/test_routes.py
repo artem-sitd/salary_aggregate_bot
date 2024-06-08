@@ -20,9 +20,9 @@ async def test_intput_t2(mocker):
 
     fake_message = AsyncMock(text=json.dumps(tests_input_data['intput_t2']))
     fake_response = tests_output_data['intput_t2']
-    fake_message.reply = AsyncMock(return_value=None)
+    fake_message.answer = AsyncMock(return_value=None)
     await handle_message(fake_message, collection)
-    fake_message.reply.assert_called_once_with(json.dumps(fake_response), parse_mode=ParseMode.HTML)
+    fake_message.answer.assert_called_once_with(json.dumps(fake_response), parse_mode=ParseMode.HTML)
 
 
 @pytest.mark.asyncio
@@ -35,9 +35,9 @@ async def test_intput_t3(mocker):
 
     fake_message = AsyncMock(text=json.dumps(tests_input_data['intput_t3']))
     fake_response = tests_output_data['intput_t3']
-    fake_message.reply = AsyncMock(return_value=None)
+    fake_message.answer = AsyncMock(return_value=None)
     await handle_message(fake_message, collection)
-    fake_message.reply.assert_called_once_with(json.dumps(fake_response), parse_mode=ParseMode.HTML)
+    fake_message.answer.assert_called_once_with(json.dumps(fake_response), parse_mode=ParseMode.HTML)
 
 
 @pytest.mark.asyncio
@@ -50,6 +50,6 @@ async def test_intput_t4(mocker):
 
     fake_message = AsyncMock(text=json.dumps(tests_input_data['intput_t4']))
     fake_response = tests_output_data['intput_t4']
-    fake_message.reply = AsyncMock(return_value=None)
+    fake_message.answer = AsyncMock(return_value=None)
     await handle_message(fake_message, collection)
-    fake_message.reply.assert_called_once_with(json.dumps(fake_response), parse_mode=ParseMode.HTML)
+    fake_message.answer.assert_called_once_with(json.dumps(fake_response), parse_mode=ParseMode.HTML)

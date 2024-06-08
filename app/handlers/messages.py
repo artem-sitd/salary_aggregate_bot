@@ -1,6 +1,6 @@
 import json
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 from aiogram import Router, types
 from aiogram.enums import ParseMode
 import logging
@@ -14,10 +14,13 @@ log_formatter = logging.Formatter(
 stream_handler.setFormatter(log_formatter)
 logger.addHandler(stream_handler)
 
-# logger.info("API is starting up")
-
 
 async def handle_message(message: types.Message, collection):
+    """
+    Функция для приема сообщения от пользователя, форматирования даты,
+    отправки/получения итоговых значений от зависимых функций,
+    и отправки пользователю сгенерированной выборки из базы
+    """
     try:
         data = json.loads(message.text)
         dt_from = datetime.fromisoformat(data["dt_from"])
@@ -26,22 +29,61 @@ async def handle_message(message: types.Message, collection):
 
         result = await aggregate_data(collection, dt_from, dt_upto, group_type)
 
-        # проверка что отдает
-        # for i in result:
-        #     logger.info(str(i))
+        dataset, labels = process_result(result, dt_from, dt_upto, group_type)
 
-        dataset = [item["total"] for item in result]
-        labels = [item["date_label"] for item in result]
+        response = {
+            "dataset": dataset,
+            "labels": labels
+        }
 
-        response = {"dataset": dataset, "labels": labels}
-
-        await message.reply(json.dumps(response), parse_mode=ParseMode.HTML)
+        await message.answer(json.dumps(response), parse_mode=ParseMode.HTML)
     except Exception as e:
-        logger.error(e)
-        await message.reply(f"Error: {str(e)}")
+        await message.answer(f"Error: {str(e)}")
+
+
+def generate_time_labels(dt_from, dt_upto, group_type):
+    """
+    Эта функция генерирует метки времени для заданного диапазона дат,
+    основываясь на типе группировки (час, день, месяц).
+    """
+    labels = []
+    current = dt_from
+
+    while current <= dt_upto:
+        labels.append(current.isoformat())
+        if group_type == 'hour':
+            current += timedelta(hours=1)
+        elif group_type == 'day':
+            current += timedelta(days=1)
+        elif group_type == 'month':
+            next_month = current.month % 12 + 1
+            next_year = current.year + (current.month // 12)
+            current = current.replace(month=next_month, year=next_year)
+
+    return labels
+
+
+def process_result(result, dt_from, dt_upto, group_type):
+    """
+    Эта функция обрабатывает результаты агрегации, чтобы заполнить
+    отсутствующие временные метки нулевыми значениями и вернуть обновленные
+    dataset и labels. Используем date_label, сгенерированный в pipeline,
+     как ключ для сопоставления.
+    """
+    labels = generate_time_labels(dt_from, dt_upto, group_type)
+    result_dict = {item['date_label']: item['total'] for item in result}
+
+    dataset = [result_dict.get(label, 0) for label in labels]
+
+    return dataset, labels
 
 
 async def aggregate_data(collection, dt_from, dt_upto, group_type):
+    """
+    Функция для выполнения агрегации MongoDB с заданным pipeline.
+    Она использует рабочий pipeline для выборки данных. Очень большой получился запрос,
+    сгенерирован chat-gpt, я его не до конца понимаю :))
+    """
     pipeline = [
         {"$match": {"dt": {"$gte": dt_from, "$lte": dt_upto}}},
         {

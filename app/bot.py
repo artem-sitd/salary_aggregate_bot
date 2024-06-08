@@ -5,7 +5,7 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from motor.motor_asyncio import AsyncIOMotorClient
 
-from app.config import API_TOKEN
+from app.config import API_TOKEN, MONGO_URL
 from app.handlers.commands import register_commands
 from app.handlers.messages import register_messages
 
@@ -15,7 +15,7 @@ bot = Bot(token=API_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTM
 
 dp = Dispatcher()
 
-client = AsyncIOMotorClient("mongodb://localhost:27017")
+client = AsyncIOMotorClient(MONGO_URL)
 db = client["salary_db"]
 collection = db["salaries"]
 
