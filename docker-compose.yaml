@@ -5,14 +5,14 @@ services:
     image: mongo:latest
     container_name: mongodb
     env_file:
-      - ".env"
+      - ".env.docker"
     ports:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
       - ./data:/docker-entrypoint-initdb.d/data:ro
-      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-      - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+      - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
 
 
   web:
@@ -25,7 +25,7 @@ services:
     ports:
       - "8000:8000"
     env_file:
-      - ".env"
+      - ".env.docker"
     depends_on:
       - mongodb
 

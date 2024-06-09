@@ -2,6 +2,7 @@
 Модуль для инициирования бота, создания подключения к Mongodb и коллекции в нем,
 регистрации комманд и handlers бота из других модулей
 """
+
 import logging
 
 from aiogram import Bot, Dispatcher, Router
@@ -18,6 +19,7 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token=API_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 
 dp = Dispatcher()
+
 
 client = AsyncIOMotorClient(MONGO_URL)
 db = client["salary_db"]

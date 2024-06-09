@@ -3,6 +3,7 @@
 Операции с базой только чтение. Имитация объекта Message телеграмма для функции handle_message.
 Бот также настоящий (не моковый)
 """
+
 import json
 from unittest.mock import AsyncMock
 

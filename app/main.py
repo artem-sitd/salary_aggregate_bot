@@ -1,6 +1,7 @@
 """
 Модуль для инициирования Fastapi приложения, также роута "/" для редиректа вебхук от телеграмма - нашему боту
 """
+
 import logging
 
 from aiogram.types import Update
