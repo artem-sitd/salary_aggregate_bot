@@ -80,17 +80,21 @@
 <h4>Настраиваем локально вебхуки с ngrok:
 на linux (ubuntu):</h4>
 1. Переходим сюда `https://ngrok.com/download` авторизуемся
-2. Далее переходим сюда и копируем `https://dashboard.ngrok.com/get-started/setup/docker`
+
+2. Далее переходим сюда `https://dashboard.ngrok.com/get-started/setup/docker`
 
 
 <img height="300" src="https://github.com/artem-sitd/salary_aggregate_bot/assets/22573129/179ac79f-3c45-4c5e-a9fd-410d3af597fc">
 
 
-3. В новом терминале вводим эту команду
+копируем, и в новом терминале вставляем, Должно получиться примерно так:
+
 
 <img height="200" src="https://github.com/artem-sitd/salary_aggregate_bot/assets/22573129/e979d03b-aba9-4683-9735-6f1bf1437604">
 
+
 Выделенный фрагмент необходимо вставить в .env.docker в переменную `WEBHOOK_URL`. <b>Внимание! В КОНЦЕ URL ДОБАВЬТЕ /.</b>
+
 
 <h4>Без докера:</h4>
 
